@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+/* Font style fixes to match original PrimeNG appearance */
+.pi {
+  font-family: 'primeicons' !important;
+}

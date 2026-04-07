@@ -1,0 +1,6 @@
+.pi {
+  font-family: 'primeicons' !important;
+}
+:host {
+  display: block;
+}

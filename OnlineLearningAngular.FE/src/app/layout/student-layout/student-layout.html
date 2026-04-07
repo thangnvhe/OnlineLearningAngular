@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-[#f8f9fa] font-sans text-gray-800 flex">
+  <aside
+    class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col shrink-0 h-screen sticky top-0"
+  >
+    <div class="p-6">
+      <h2 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Main Menu</h2>
+      <nav class="flex flex-col gap-1">
+        @for (item of menuItems; track item.label) {
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="bg-pink-50 text-pink-600 font-bold"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-all text-sm font-semibold cursor-pointer"
+          >
+            <i [class]="item.icon + ' text-lg'"></i>
+            {{ item.label }}
+            Student
+          </a>
+        }
+      </nav>
+
+      <h2 class="text-xs font-black text-gray-400 uppercase tracking-widest mt-10 mb-6">
+        Account Settings
+      </h2>
+      <nav class="flex flex-col gap-1">
+        <button
+          class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl text-sm font-semibold transition-all"
+        >
+          <i class="pi pi-cog"></i> Cài đặt
+        </button>
+        <button
+          class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl text-sm font-semibold transition-all"
+        >
+          <i class="pi pi-sign-out"></i> Đăng xuất
+        </button>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="flex-1 min-h-screen overflow-y-auto pb-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

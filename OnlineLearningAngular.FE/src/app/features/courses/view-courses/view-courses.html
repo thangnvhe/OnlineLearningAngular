@@ -1,0 +1,112 @@
+<div class="p-6 animate-fadeIn">
+            <!-- Header Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+              @for (cStat of courseStats; track cStat.label) {
+                <div [class]="'p-6 rounded-xl text-white shadow-sm ' + cStat.bgColor">
+                  <p class="text-xs font-bold opacity-80 uppercase tracking-widest mb-1">{{ cStat.label }}</p>
+                  <p class="text-4xl font-black">{{ cStat.value }}</p>
+                </div>
+              }
+            </div>
+
+            <!-- Table Controls -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-8">
+              <div class="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <h3 class="text-xl font-black text-gray-800">Khóa học</h3>
+                <div class="flex items-center gap-2">
+                  <button class="p-2.5 bg-red-500 text-white rounded-lg shadow-sm">
+                    <i class="pi pi-list"></i>
+                  </button>
+                  <button class="p-2.5 bg-gray-50 text-gray-400 border border-gray-100 rounded-lg">
+                    <i class="pi pi-th-large"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="px-6 pb-6 flex flex-col md:flex-row justify-between gap-4">
+                <div class="relative inline-block w-48">
+                  <select class="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-100">
+                    <option>Trạng thái</option>
+                    <option>Đã xuất bản</option>
+                    <option>Đang chờ</option>
+                    <option>Nháp</option>
+                  </select>
+                  <i class="pi pi-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                </div>
+                <div class="relative flex-1 md:max-w-xs">
+                  <i class="pi pi-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                  <input type="text" placeholder="Tìm kiếm khóa học..." class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-100">
+                </div>
+              </div>
+
+              <!-- Courses Table -->
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr class="bg-gray-50/50 text-gray-400 text-[10px] font-black uppercase tracking-widest border-b border-gray-100">
+                      <th class="px-6 py-4">Tên khóa học</th>
+                      <th class="px-6 py-4">Học viên</th>
+                      <th class="px-6 py-4">Giá</th>
+                      <th class="px-6 py-4">Đánh giá</th>
+                      <th class="px-6 py-4">Trạng thái</th>
+                      <th class="px-6 py-4 text-center">Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-50">
+                    @for (course of allCourses; track course.id) {
+                      <tr class="hover:bg-gray-50/50 transition-colors group">
+                        <td class="px-6 py-5">
+                          <div class="flex items-center gap-4">
+                            <img [src]="course.image" class="w-14 h-14 object-cover rounded-lg shadow-sm border border-gray-100" alt="Course">
+                            <div>
+                              <p class="font-bold text-sm text-gray-800 mb-1 group-hover:text-blue-600 transition-colors">{{ course.title }}</p>
+                              <div class="flex items-center gap-3 text-[10px] font-bold text-gray-400">
+                                <span class="flex items-center gap-1"><i class="pi pi-play-circle"></i> {{course.lessons}} Bài học</span>
+                                <span class="flex items-center gap-1"><i class="pi pi-question-circle"></i> {{course.quizzes}} Trắc nghiệm</span>
+                                <span class="flex items-center gap-1"><i class="pi pi-clock"></i> {{course.duration}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-5">
+                          <span class="font-bold text-sm text-gray-600">{{ course.enrolled }}</span>
+                        </td>
+                        <td class="px-6 py-5">
+                          <span class="font-black text-sm text-gray-900">\${{ course.price }}</span>
+                        </td>
+                        <td class="px-6 py-5">
+                          <div class="flex items-center gap-1 text-sm font-bold">
+                            <i class="pi pi-star-fill text-yellow-400 text-xs"></i>
+                            <span>{{ course.rating }}</span>
+                            <span class="text-gray-300 font-normal">({{ course.reviews }})</span>
+                          </div>
+                        </td>
+                        <td class="px-6 py-5">
+                          <span [class]="'text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter ' + getStatusClass(course.status)">
+                             {{ course.status }}
+                          </span>
+                        </td>
+                        <td class="px-6 py-5 text-center">
+                          <button class="text-gray-400 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50">
+                            <i class="pi pi-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination -->
+              <div class="p-6 bg-white border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                <span class="text-xs font-bold text-gray-400">Trang 1 / 2</span>
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-100 text-gray-400 hover:bg-gray-50"><i class="pi pi-chevron-left text-xs"></i></button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-red-500 text-white font-bold text-xs">1</button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-100 text-gray-600 font-bold text-xs hover:bg-gray-50">2</button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-100 text-gray-600 font-bold text-xs hover:bg-gray-50">3</button>
+                  <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-100 text-gray-400 hover:bg-gray-50"><i class="pi pi-chevron-right text-xs"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>

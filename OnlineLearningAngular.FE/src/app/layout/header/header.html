@@ -1,0 +1,44 @@
+<div class="sticky top-0 z-50 w-full px-4 pt-4 pb-2 bg-slate-50/50 dark:bg-slate-950/50 backdrop-blur-sm">
+  <p-menubar [model]="items" styleClass="border-none bg-white/75 dark:bg-slate-900/80 backdrop-blur-md shadow-sm rounded-2xl max-w-screen-2xl mx-auto px-6 py-2">
+    <!-- Logo -->
+    <ng-template #start>
+      <div class="flex items-center gap-3 cursor-pointer group mr-8" routerLink="/">
+        <div class="bg-gradient-to-tr from-indigo-600 to-rose-500 p-2 rounded-xl shadow-lg shadow-rose-500/20 group-hover:shadow-rose-500/40 transition-shadow">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-black text-slate-800 dark:text-white tracking-tight">Raque</span>
+      </div>
+    </ng-template>
+
+    <!-- Menu Item Template (Optional: for custom styling if needed) -->
+    <ng-template #item let-item let-root="root">
+        <a pRipple class="flex items-center p-menubar-item-link">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label }}</span>
+            <span *ngIf="item.items" [class]="root ? 'pi pi-angle-down ml-2' : 'pi pi-angle-right ml-auto'"></span>
+        </a>
+    </ng-template>
+
+    <!-- Auth Buttons -->
+    <ng-template #end>
+      <div class="flex items-center gap-3 ml-4">
+        <p-button 
+            label="Sign In" 
+            [text]="true" 
+            [plain]="true"
+            size="small"
+            styleClass="font-bold text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400" 
+            (onClick)="navigateToSignIn()">
+        </p-button>
+        <p-button 
+            label="Sign Up" 
+            size="small"
+            styleClass="bg-gradient-to-r from-indigo-600 to-rose-500 border-none text-white font-bold rounded-full px-6 shadow-lg shadow-rose-500/20 hover:shadow-indigo-500/30 transition-all font-bold" 
+            (onClick)="navigateToSignUp()">
+        </p-button>
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>

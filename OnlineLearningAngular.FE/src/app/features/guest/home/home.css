@@ -1,0 +1,20 @@
+@reference "tailwindcss";
+
+.note {
+  @apply block border-2 border-[#f33b58] px-5 py-1.5 font-bold rounded-[55%_45%_50%_40%] shadow-sm;
+}
+.student-avatar {
+  @apply w-full object-cover rounded-t-[120px] grayscale hover:grayscale-0 transition-all duration-700 hover:-translate-y-4 cursor-pointer border-b-4 border-transparent hover:border-[#f33b58];
+}
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
