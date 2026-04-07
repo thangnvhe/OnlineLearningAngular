@@ -6,6 +6,7 @@ namespace OnlineLearningAngular.DataAccess.Entities
     {
         public string Name { get; set; }
         public string? Description { get; set; }
+
         public int? ModuleId { get; set; }
         [ForeignKey("ModuleId")]
         public Module? Module { get; set; }

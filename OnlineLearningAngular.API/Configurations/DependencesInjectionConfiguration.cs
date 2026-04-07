@@ -59,6 +59,8 @@ namespace OnlineLearningAngular.API.Configurations
             services.AddScoped<IStudentExamDetailService, StudentExamDetailService>();
             services.AddScoped<ILessonService, LessonService>();
             services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<ILogRepository, LogRepository>();
+            services.AddScoped<ILogService, LogService>();
 
             services.AddScoped<IValidator<RegisterRequest>, RegisterRequestValidation>();
             services.AddScoped<IValidator<LoginRequest>, LoginRequestValidation>();

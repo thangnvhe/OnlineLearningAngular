@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineLearningAngular.BusinessLayer;
 using System.Net;
@@ -26,5 +26,7 @@ namespace OnlineLearningAngular.API.Controllers.Base
                 .Build();
             return Ok(successResponse);
         }
+
+        protected IActionResult Handle<T>(ServiceResult<T> result) => HandleResult(result);
     }
 }
